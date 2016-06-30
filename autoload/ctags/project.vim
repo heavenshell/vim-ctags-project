@@ -4,6 +4,11 @@
 " WebPage:  http://github.com/heavenshell/vim-ctags-project/
 " Description: Generate ctags by each project
 " License: BSD, see LICENSE for more details.
+if exists('g:ctags_project_loaded')
+  finish
+endif
+let g:ctags_project_loaded = 1
+
 let s:save_cpo = &cpo
 set cpo&vim
 
