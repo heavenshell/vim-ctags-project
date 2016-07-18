@@ -67,6 +67,10 @@ endfunction
 
 function! s:detect_project_root(srcpath, filetype) abort
   let files = g:ctags_project_root_files
+  if !has_key(files, a:filetype)
+    return ''
+  endif
+
   let project_root = ''
   for f in files[a:filetype]
     let project_root = findfile(f, a:srcpath . ';')
