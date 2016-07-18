@@ -19,9 +19,7 @@ if !exists('g:ctags_project_root_files')
 endif
 
 if !exists('g:ctags_project_root_filetype')
-  let g:ctags_project_root_filetype = {
-  \ 'python.unit': 'python'
-  \ }
+  let g:ctags_project_root_filetype = {}
 endif
 
 if !exists('g:ctags_project_bin')
