@@ -103,5 +103,16 @@ function! ctags#project#run() abort
   call s:create_ctags(project_root_path, savepath . '/tags')
 endfunction
 
+function! ctags#project#load() abort
+  let savepath = s:savepath()
+  let tagpath = savepath . '/tags'
+  if filereadable(tagpath)
+    execute 'set tag=' . tagpath
+    return tagpath
+  endif
+
+  return ''
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
