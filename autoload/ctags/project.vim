@@ -84,14 +84,20 @@ function! s:detect_project_root(srcpath, filetype) abort
   return fnamemodify(project_root, ':p')
 endfunction
 
-function! ctags#project#run() abort
+function! s:savepath() abort
   let project_root = s:detect_project_root(expand('%:p'), s:ext)
   if project_root == ''
-    return
+    return ''
   endif
   let project_root_name = fnamemodify(project_root, ':h:t:r')
   let project_root_path = fnamemodify(project_root, ':h:p')
   let savepath = g:ctags_project_save_path . project_root_name
+
+  return savepath
+endfunction
+
+function! ctags#project#run() abort
+  let savepath = s:savepath()
 
   call s:ensure_directory(savepath)
   call s:create_ctags(project_root_path, savepath . '/tags')
